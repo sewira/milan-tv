@@ -2,14 +2,16 @@ import React from 'react';
 
 import Header from '../components/header/Header';
 import Carousel from '../components/carousel/Carousel';
-import MoviesList from '../components/movieslist/MoviesList';
+import Footer from '../components/footer/footer';
+import Main from '../components/main/Main';
 
 const HomePage = () => {
   return (
     <div>
       <Header />
       <Carousel />
-      <MoviesList />
+      <Main />
+      <Footer />
     </div>
   );
 };
