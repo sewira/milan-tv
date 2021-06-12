@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './main.css';
-import { GET_ALL_MOVIES } from '../../constant';
+import { GET_ALL_MOVIES, GET_MOVIES_BY_GENRE } from '../../constant';
 
 import Movies from '../movies/Movies';
 
@@ -16,14 +16,31 @@ const Main = () => {
     comedy: 35,
   });
 
-  //   const filterMovieByGenre = (e) => {
-  //     console.log(data);
-  //   };
+  // const filteredByGenre = (e) => {
+  //   const result = data.filter(
+  //     (item) => item.genre_ids[0] === parseInt(e.target.value)
+  //   );
+  //   setMovies(result);
+  // };
+
+  const fetchMoviesByGenre = async (e) => {
+    const res = await axios.get(
+      `${GET_MOVIES_BY_GENRE(parseInt(e.target.value))}`
+    );
+    console.log(res.data.results);
+    setMovies(res.data.results);
+  };
+
+  const getAllMovies = () => {
+    setMovies(data);
+  };
 
   const getMovies = async (url) => {
     const res = await axios.get(url);
+    // setMovies(res.data.results);
+
+    setData(res.data.results);
     setMovies(res.data.results);
-    // setData(res.data.results);
     // console.log(res.data.results);
   };
 
@@ -37,35 +54,41 @@ const Main = () => {
         <h1>Browse by category</h1>
       </div>
 
-      <button className="btn">All</button>
-      <button className="btn" value={genreValue.animation}>
+      <button className="btn" onClick={getAllMovies}>
+        All
+      </button>
+      <button
+        className="btn"
+        value={genreValue.animation}
+        onClick={fetchMoviesByGenre}
+      >
         Animation
       </button>
       <button
         className="btn"
         value={genreValue.action}
-        onClick={(e) => console.log(e.target.value)}
+        onClick={fetchMoviesByGenre}
       >
         Action
       </button>
       <button
         className="btn"
         value={genreValue.adventure}
-        onClick={(e) => console.log(e.target.value)}
+        onClick={fetchMoviesByGenre}
       >
         Adventure
       </button>
       <button
         className="btn"
         value={genreValue.sciene_fiction}
-        onClick={(e) => console.log(e.target.value)}
+        onClick={fetchMoviesByGenre}
       >
         Sci-fi
       </button>
       <button
         className="btn"
         value={genreValue.comedy}
-        onClick={(e) => console.log(e.target.value)}
+        onClick={fetchMoviesByGenre}
       >
         Comedy
       </button>
