@@ -1,0 +1,23 @@
+.navbar {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navbar-item input {
+  padding: 0.5rem 5rem;
+}
+
+.navbar-item p {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.navbar-item.logo {
+  display: flex;
+}
+
+.navbar-item.logo p {
+  margin-right: 10px;
+}
