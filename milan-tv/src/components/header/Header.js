@@ -1,7 +1,11 @@
-import React from 'react';
-import './header.css';
+import React, { useState } from "react";
+import "./header.css";
+import Modal from "react-modal";
 
 const Header = () => {
+  const [loginModal, setLoginModal] = useState(false);
+  const [regisModal, setRegisModal] = useState(false);
+
   return (
     <div className="navbar">
       <div className="navbar-item logo">
@@ -13,7 +17,39 @@ const Header = () => {
       </div>
       <div className="navbar-item">
         <div onClick={(e) => console.log(e.target)}>
-          <p>Sign in</p>
+          <p onClick={() => setLoginModal(true)}>Sign in</p>
+
+          <Modal isOpen={loginModal} onRequestClose={()=> setLoginModal(false)}>
+            <div className="login-wrapper">
+
+                  <button className="btnClose" onClick={() =>setLoginModal(false)}>
+                    X
+                  </button>
+
+                  <h4 className="title-modal">Milan TV</h4>
+
+                  <div className="email-wrapper">
+                    <label>Email</label><br/>
+                    <input  className="input-email" type="text"  /><br/>
+                  </div>
+
+                  <div className="password-wrapper">
+                    <label>Password</label><br/>
+                    <input className="input-password" type="password" />
+                  </div>
+
+                  <button className="btnLogin">
+                    Login
+                  </button>
+
+                  <p className="new-acc">Don't have an account? <span
+                    onClick={() =>setLoginModal(false)}
+                    >
+                    Register
+                    </span>
+                  </p>
+             </div>
+          </Modal>
         </div>
       </div>
     </div>
