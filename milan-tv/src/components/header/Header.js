@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./header.css";
 import Modal from "react-modal";
+
 
 const Header = () => {
   const [loginModal, setLoginModal] = useState(false);
   const [regisModal, setRegisModal] = useState(false);
+
+
+
+
+
+
+const handleOnSubmit = (e) =>{
+  e.preventDefault();
+}
 
   return (
     <div className="navbar">
@@ -12,8 +22,10 @@ const Header = () => {
         <p>Logo</p>
         <p>MilanTV</p>
       </div>
-      <div className="navbar-item">
-        <input type="text" placeholder="search movie" />
+      
+      <div   className="navbar-item">
+        <input type="text" placeholder="search movie"
+        />
       </div>
       <div className="navbar-item">
         <div onClick={(e) => console.log(e.target)}>
@@ -51,6 +63,10 @@ const Header = () => {
              </div>
           </Modal>
         </div>
+      </div>
+      <div className="navbar-item">
+      <p onClick><a href="#"> Profile</a>
+       </p>
       </div>
     </div>
   );

@@ -5,8 +5,15 @@
   justify-content: space-around;
 }
 
+
 .navbar-item input {
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  border:none;
+  background-color: transparent;
+  border: 2px solid #22254b;
+  font-family: inherit;
+  font-size: 1.2rem;
 }
 
 .navbar-item p {
@@ -14,7 +21,11 @@
   font-weight: 500;
   cursor: pointer;
 }
-
+.navbar-item p:hover{
+  background:#ebe7e7;
+  border-radius: 10px;
+  display:inline-block;
+}
 .navbar-item.logo {
   display: flex;
 }
