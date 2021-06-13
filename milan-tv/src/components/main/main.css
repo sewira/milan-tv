@@ -1,6 +1,7 @@
 .home {
   margin: 0 80px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .card-container {
