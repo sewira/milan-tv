@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './main.css';
-import { GET_ALL_MOVIES, GET_MOVIES_BY_GENRE } from '../../constant';
+import {
+  GET_ALL_MOVIES,
+  GET_MOVIES_BY_GENRE,
+  GET_MOVIE_BY_ID,
+} from '../../constant';
 
 import Movies from '../movies/Movies';
 
 const Main = () => {
   const [data, setData] = useState([]);
   const [movies, setMovies] = useState([]);
-
   const [genreValue, setGenreValue] = useState({
     action: {
       id: 28,
@@ -39,6 +42,11 @@ const Main = () => {
   //   setMovies(result);
   // };
 
+  const fetchMoviesById = async (id) => {
+    const result = await axios.get(`${GET_MOVIE_BY_ID(637649)}`);
+    console.log(result);
+  };
+
   const fetchMoviesByGenre = async (e) => {
     const res = await axios.get(
       `${GET_MOVIES_BY_GENRE(parseInt(e.target.value))}`
@@ -53,7 +61,6 @@ const Main = () => {
 
   const getMovies = async (url) => {
     const res = await axios.get(url);
-    // setMovies(res.data.results);
 
     setData(res.data.results);
     setMovies(res.data.results);
@@ -62,6 +69,7 @@ const Main = () => {
 
   useEffect(() => {
     getMovies(GET_ALL_MOVIES);
+    fetchMoviesById();
   }, []);
 
   return (
@@ -117,6 +125,7 @@ const Main = () => {
               title={movie.title}
               genre={movie.genre_ids[0]}
               poster_path={movie.poster_path}
+              id={movie.id}
             />
           ))}
       </div>
