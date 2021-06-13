@@ -8,12 +8,28 @@ import Movies from '../movies/Movies';
 const Main = () => {
   const [data, setData] = useState([]);
   const [movies, setMovies] = useState([]);
+
   const [genreValue, setGenreValue] = useState({
-    action: 28,
-    animation: 16,
-    adventure: 12,
-    sciene_fiction: 878,
-    comedy: 35,
+    action: {
+      id: 28,
+      isCLicked: false,
+    },
+    animation: {
+      id: 16,
+      isCLicked: false,
+    },
+    adventure: {
+      id: 12,
+      isCLicked: false,
+    },
+    sciene_fiction: {
+      id: 878,
+      isCLicked: false,
+    },
+    comedy: {
+      id: 35,
+      isCLicked: false,
+    },
   });
 
   // const filteredByGenre = (e) => {
@@ -27,7 +43,7 @@ const Main = () => {
     const res = await axios.get(
       `${GET_MOVIES_BY_GENRE(parseInt(e.target.value))}`
     );
-    console.log(res.data.results);
+
     setMovies(res.data.results);
   };
 
@@ -54,40 +70,40 @@ const Main = () => {
         <h1>Browse by category</h1>
       </div>
 
-      <button className="btn" onClick={getAllMovies}>
+      <button className="btn " onClick={getAllMovies}>
         All
       </button>
       <button
-        className="btn"
-        value={genreValue.animation}
+        className={genreValue.animation.isCLicked ? 'btn active' : 'btn'}
+        value={genreValue.animation.id}
         onClick={fetchMoviesByGenre}
       >
         Animation
       </button>
       <button
-        className="btn"
-        value={genreValue.action}
+        className="btn "
+        value={genreValue.action.id}
         onClick={fetchMoviesByGenre}
       >
         Action
       </button>
       <button
-        className="btn"
-        value={genreValue.adventure}
+        className="btn "
+        value={genreValue.adventure.id}
         onClick={fetchMoviesByGenre}
       >
         Adventure
       </button>
       <button
         className="btn"
-        value={genreValue.sciene_fiction}
+        value={genreValue.sciene_fiction.id}
         onClick={fetchMoviesByGenre}
       >
         Sci-fi
       </button>
       <button
-        className="btn"
-        value={genreValue.comedy}
+        className="btn "
+        value={genreValue.comedy.id}
         onClick={fetchMoviesByGenre}
       >
         Comedy

@@ -39,6 +39,10 @@
   font-weight: 900;
 }
 
+.btn.active {
+  background: #eb507f;
+}
+
 .btn:hover {
   background: #eb507f;
 }
