@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./header.css";
 import Modal from "react-modal";
+import Modal1 from 'react-modal';
 
 const Header = () => {
   const [loginModal, setLoginModal] = useState(false);
@@ -28,6 +29,7 @@ const Header = () => {
 
                   <h4 className="title-modal">Milan TV</h4>
 
+                  
                   <div className="email-wrapper">
                     <label>Email</label><br/>
                     <input  className="input-email" type="text"  /><br/>
@@ -43,13 +45,50 @@ const Header = () => {
                   </button>
 
                   <p className="new-acc">Don't have an account? <span
-                    onClick={() =>setLoginModal(false)}
+                    onClick={() =>setLoginModal(false) & setRegisModal(true)}
                     >
                     Register
                     </span>
                   </p>
              </div>
           </Modal>
+          <Modal1 isOpen={regisModal} onRequestClose={()=> setRegisModal(false)}>
+            <div className="login-wrapper">
+
+                  <button className="btnClose" onClick={() =>setRegisModal(false)}>
+                    X
+                  </button>
+
+                  <h4 className="title-modal">Milan TV</h4>
+                  
+
+                  <div className="email-wrapper">
+                    <label>Full Name</label><br/>
+                    <input  className="input-email" type="text"  /><br/>
+                  </div>
+
+                  <div className="email-wrapper">
+                    <label>Email</label><br/>
+                    <input  className="input-email" type="text"  /><br/>
+                  </div>
+
+                  <div className="password-wrapper">
+                    <label>Password</label><br/>
+                    <input className="input-password" type="password" />
+                  </div>
+
+                  <button className="btnLogin">
+                    Register
+                  </button>
+
+                  <p className="new-acc">Already have an account? <span
+                    onClick={() =>setRegisModal(false) & setLoginModal(true)}
+                    >
+                    Login
+                    </span>
+                  </p>
+             </div>
+          </Modal1>
         </div>
       </div>
     </div>

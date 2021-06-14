@@ -75,7 +75,7 @@ const Main = () => {
   return (
     <div className="home">
       <div className="title">
-        <h1>Browse by category</h1>
+        <h1>Browse by Category</h1>
       </div>
 
       <button className="btn " onClick={getAllMovies}>
