@@ -1,13 +1,17 @@
-export const GET_ALL_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
+export const FETCH_ALL_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
 export const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 
-export const GET_MOVIES_BY_GENRE = (id) => {
+export const FETCH_MOVIES_BY_GENRE = (id) => {
   return `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}&with_watch_monetization_types=flatrate`;
 };
 
-export const GET_MOVIE_BY_ID = (id) => {
+export const FETCH_MOVIE_BY_ID = (id) => {
   return `https://api.themoviedb.org/3/movie/${id}?api_key=5c994437deded241a082aac5d31f0302&language=en-US`;
+};
+
+export const FETCH_MOVIES_BY_SEARCH = (title) => {
+  return `https://api.themoviedb.org/3/search/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&query=${title}&page=1&include_adult=false`;
 };
 
 export const genres = [

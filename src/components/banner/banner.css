@@ -1,0 +1,47 @@
+.banner {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  color: white;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  flex-direction: column;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner-content {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}
+
+.banner-content p {
+  font-weight: 500;
+}
+
+.btn-banner button {
+  padding: 15px 30px;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.btn-banner button.satu {
+  background: #fe024e;
+  color: white;
+  font-weight: 900;
+  font-style: Roboto;
+}
+.btn-banner button.dua {
+  background: #fe024e;
+  color: white;
+  font-weight: 900;
+}

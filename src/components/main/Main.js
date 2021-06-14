@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './main.css';
-import {
-  GET_ALL_MOVIES,
-  GET_MOVIES_BY_GENRE,
-  GET_MOVIE_BY_ID,
-} from '../../constant';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getMovies, getMoviesByGenre } from '../../redux/action/movieActions';
 
 import Movies from '../movies/Movies';
 
 const Main = () => {
-  const [data, setData] = useState([]);
-  const [movies, setMovies] = useState([]);
   const [genreValue, setGenreValue] = useState({
     action: {
       id: 28,
@@ -34,42 +30,15 @@ const Main = () => {
       isCLicked: false,
     },
   });
+  const { movies, loading } = useSelector((state) => state.movies);
+  const dispatch = useDispatch();
 
-  // const filteredByGenre = (e) => {
-  //   const result = data.filter(
-  //     (item) => item.genre_ids[0] === parseInt(e.target.value)
-  //   );
-  //   setMovies(result);
-  // };
-
-  const fetchMoviesById = async (id) => {
-    const result = await axios.get(`${GET_MOVIE_BY_ID(637649)}`);
-    console.log(result);
-  };
-
-  const fetchMoviesByGenre = async (e) => {
-    const res = await axios.get(
-      `${GET_MOVIES_BY_GENRE(parseInt(e.target.value))}`
-    );
-
-    setMovies(res.data.results);
-  };
-
-  const getAllMovies = () => {
-    setMovies(data);
-  };
-
-  const getMovies = async (url) => {
-    const res = await axios.get(url);
-
-    setData(res.data.results);
-    setMovies(res.data.results);
-    // console.log(res.data.results);
+  const sortByGenre = (e) => {
+    dispatch(getMoviesByGenre(e.target.value));
   };
 
   useEffect(() => {
-    getMovies(GET_ALL_MOVIES);
-    fetchMoviesById();
+    dispatch(getMovies());
   }, []);
 
   return (
@@ -78,56 +47,57 @@ const Main = () => {
         <h1>Browse by Category</h1>
       </div>
 
-      <button className="btn " onClick={getAllMovies}>
+      <button className="btn" onClick={() => dispatch(getMovies())}>
         All
       </button>
       <button
         className={genreValue.animation.isCLicked ? 'btn active' : 'btn'}
         value={genreValue.animation.id}
-        onClick={fetchMoviesByGenre}
+        onClick={sortByGenre}
       >
         Animation
       </button>
       <button
         className="btn "
         value={genreValue.action.id}
-        onClick={fetchMoviesByGenre}
+        onClick={sortByGenre}
       >
         Action
       </button>
       <button
         className="btn "
         value={genreValue.adventure.id}
-        onClick={fetchMoviesByGenre}
+        onClick={sortByGenre}
       >
         Adventure
       </button>
       <button
         className="btn"
         value={genreValue.sciene_fiction.id}
-        onClick={fetchMoviesByGenre}
+        onClick={sortByGenre}
       >
         Sci-fi
       </button>
       <button
         className="btn "
         value={genreValue.comedy.id}
-        onClick={fetchMoviesByGenre}
+        onClick={sortByGenre}
       >
         Comedy
       </button>
 
       <div className="card-container">
-        {movies.length > 0 &&
-          movies.map((movie) => (
-            <Movies
-              key={movie.id}
-              title={movie.title}
-              genre={movie.genre_ids[0]}
-              poster_path={movie.poster_path}
-              id={movie.id}
-            />
-          ))}
+        {loading
+          ? 'Loading...'
+          : movies.map((movie) => (
+              <Movies
+                key={movie.id}
+                title={movie.title}
+                genre={movie.genre_ids[0]}
+                poster_path={movie.poster_path}
+                id={movie.id}
+              />
+            ))}
       </div>
     </div>
   );
