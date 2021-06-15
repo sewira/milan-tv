@@ -7,6 +7,18 @@
     text-decoration:none;
    
 }
+.border {
+    width: 100%; 
+    text-align: left; 
+    border-bottom: 1px solid #000; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+ 
+ .border span { 
+     background:#fff; 
+     padding:0 10px; 
+ }
    
 
 .info p{
