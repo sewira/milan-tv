@@ -2,7 +2,7 @@ footer {
   width: 100%;
   background: #111;
   color: #fff;
-  height: 630px;
+  height: 330px;
 }
 
 .main-content {
@@ -13,6 +13,8 @@ footer {
 .main-content .box {
   flex-basis: 50%;
   padding: 10px;
+  margin-left: 70px;
+  margin-top: -30px;
 }
 
 .left.box .title {
@@ -20,31 +22,32 @@ footer {
 }
 
 .left.box .title h2 {
-  font-size: 64px;
-  font-weight: 500;
+  font-size: 50px;
+  font-weight: 200;
 }
 
 .left.box .content p {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: 300;
   margin-top: -25px;
 }
 
 .center.box .content {
-  margin-top: 40px;
+  margin-top: 53px;
 }
 
 .center.box ul li {
   list-style-type: none;
-  font-size: 36px;
+  font-size: 22px;
   font-weight: 300;
   margin-left: 25%;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .right.box .title h2 {
-  font-size: 36px;
+  font-size: 26px;
   font-weight: 500;
+  margin-top: 48px;
 }
 
 .right.box .content .social {
@@ -65,7 +68,16 @@ footer {
   margin: 0 50px;
 }
 
+.socials img{
+  width: 90px;
+  height: 40px;
+}
+
+.sns img{
+  height: 40px;
+}
+
 .copyright p {
-  font-size: 36px;
+  font-size: 17px;
   text-align: center;
 }
