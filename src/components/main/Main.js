@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './main.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovies, getMoviesByGenre } from '../../redux/action/movieActions';
 
 import Movies from '../movies/Movies';
+import useToggle from '../../constant/useToggle';
 
 const Main = () => {
   const [genreValue, setGenreValue] = useState({
@@ -33,8 +33,11 @@ const Main = () => {
   const { movies, loading } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
+  const [isClick, setIsClick] = useState(false);
+
   const sortByGenre = (e) => {
     dispatch(getMoviesByGenre(e.target.value));
+    setIsClick(!isClick);
   };
 
   useEffect(() => {
@@ -51,35 +54,35 @@ const Main = () => {
         All
       </button>
       <button
-        className={genreValue.animation.isCLicked ? 'btn active' : 'btn'}
+        className={isClick ? 'btn active' : 'btn'}
         value={genreValue.animation.id}
         onClick={sortByGenre}
       >
         Animation
       </button>
       <button
-        className="btn "
+        className={isClick ? 'btn active' : 'btn'}
         value={genreValue.action.id}
         onClick={sortByGenre}
       >
         Action
       </button>
       <button
-        className="btn "
+        className={isClick ? 'btn active' : 'btn'}
         value={genreValue.adventure.id}
         onClick={sortByGenre}
       >
         Adventure
       </button>
       <button
-        className="btn"
+        className={isClick ? 'btn active' : 'btn'}
         value={genreValue.sciene_fiction.id}
         onClick={sortByGenre}
       >
         Sci-fi
       </button>
       <button
-        className="btn "
+        className={isClick ? 'btn active' : 'btn'}
         value={genreValue.comedy.id}
         onClick={sortByGenre}
       >

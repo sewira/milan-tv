@@ -1,0 +1,22 @@
+
+.info{
+    padding: 10px 50px;
+    margin-right: 20px;
+    display: block;
+    font-weight: normal;
+    text-decoration:none;
+   
+}
+   
+
+.info p{
+display: inline-block;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+
+}
+.info h5{
+    font-weight: normal;
+    font-weight: normal;
+}

@@ -17,6 +17,7 @@ const Header = () => {
   const [regisModal, setRegisModal] = useState(false);
   const [search, setSearch] = useState('');
 
+  console.log(email, password);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -26,7 +27,6 @@ const Header = () => {
   };
 
   const loginHandler = (e) => {
-    e.preventDefault();
     dispatch(
       handleLogin({
         email: email,
@@ -90,12 +90,14 @@ const Header = () => {
               <div className="email-wrapper">
                 <label>Email</label>
                 <br />
+
                 <input
                   value={email}
                   className="input-email"
                   type="text"
                   onChange={(e) => setEmail(e.target.value)}
                 />
+
                 <br />
               </div>
 
