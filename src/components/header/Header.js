@@ -3,10 +3,16 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import Modal from 'react-modal';
 import Modal1 from 'react-modal';
+import { handleLogin } from '../../redux/action/loginActions';
+import { userAct } from '../../redux/action/userActions';
+import { login } from '../../userService/userService';
 import { useDispatch } from 'react-redux';
 import { getMoviesBySearch } from '../../redux/action/movieActions';
 
 const Header = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const [loginModal, setLoginModal] = useState(false);
   const [regisModal, setRegisModal] = useState(false);
   const [search, setSearch] = useState('');
@@ -17,6 +23,32 @@ const Header = () => {
     e.preventDefault();
     dispatch(getMoviesBySearch(search));
     setSearch('');
+  };
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      handleLogin({
+        email: email,
+        password: password,
+      })
+    );
+
+    const store = window.localStorage;
+    login(email, password)
+      .then((response) => {
+        store.setItem('token', response.data.token);
+        console.log(response);
+        const { email, password, token } = response.data;
+        const temp = { email, password, token };
+        console.log(temp, 'temp');
+        console.log(response, 'response');
+        store.setItem('data', JSON.stringify(temp));
+        dispatch(userAct({ email, password }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -58,22 +90,37 @@ const Header = () => {
               <div className="email-wrapper">
                 <label>Email</label>
                 <br />
-                <input className="input-email" type="text" />
+                <input
+                  value={email}
+                  className="input-email"
+                  type="text"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
                 <br />
               </div>
 
               <div className="password-wrapper">
                 <label>Password</label>
                 <br />
-                <input className="input-password" type="password" />
+                <input
+                  value={password}
+                  className="input-password"
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
 
-              <button className="btnLogin">Login</button>
+              <button className="btnLogin" onClick={() => loginHandler()}>
+                Login
+              </button>
 
               <p className="new-acc">
                 Don't have an account?{' '}
                 <span
-                  onClick={() => setLoginModal(false) & setRegisModal(true)}
+                  onClick={() => {
+                    setLoginModal(false);
+                    setRegisModal(true);
+                  }}
                 >
                   Register
                 </span>
@@ -116,7 +163,10 @@ const Header = () => {
               <p className="new-acc">
                 Already have an account?{' '}
                 <span
-                  onClick={() => setRegisModal(false) & setLoginModal(true)}
+                  onClick={() => {
+                    setRegisModal(false);
+                    setLoginModal(true);
+                  }}
                 >
                   Login
                 </span>
@@ -128,5 +178,4 @@ const Header = () => {
     </div>
   );
 };
-
 export default Header;
