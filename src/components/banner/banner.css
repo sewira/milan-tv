@@ -30,18 +30,19 @@
 .btn-banner button {
   padding: 15px 30px;
   margin-right: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-top: 20px;
+  border: none;
 }
 
-.btn-banner button.satu {
+.btn-banner .satu {
   background: #fe024e;
   color: white;
   font-weight: 900;
   font-style: Roboto;
 }
-.btn-banner button.dua {
-  background: #fe024e;
-  color: white;
+.btn-banner .dua {
+  color: black;
   font-weight: 900;
+  opacity: 0.5;
 }

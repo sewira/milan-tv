@@ -16,6 +16,7 @@ const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getMoviesBySearch(search));
+    setSearch('');
   };
 
   return (
