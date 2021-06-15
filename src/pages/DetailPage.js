@@ -24,6 +24,7 @@ const DetailPage = () => {
 
   return (
     <div>
+      
       <Banner backdrop_path={detail.backdrop_path} />
       <Overview />
     </div>
