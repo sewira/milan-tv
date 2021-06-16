@@ -1,4 +1,8 @@
-export const FETCH_ALL_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
+export const FETCH_ALL_MOVIES = `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
+
+export const FETCH_MOVIES = (page) => {
+  return `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
+};
 
 export const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 

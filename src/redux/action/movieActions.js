@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { GET_ALL_MOVIES, SET_LOADING, GET_MOVIES_ERROR } from './types';
 import {
-  FETCH_ALL_MOVIES,
+  FETCH_MOVIES,
   FETCH_MOVIES_BY_GENRE,
   FETCH_MOVIES_BY_SEARCH,
 } from '../../constant';
 
-export const getMovies = () => async (dispatch) => {
+export const getMovies = (page) => async (dispatch) => {
   try {
     setLoading();
-    const res = await axios.get(FETCH_ALL_MOVIES);
+    const res = await axios.get(FETCH_MOVIES(page));
     dispatch({
       type: GET_ALL_MOVIES,
       payload: res.data.results,

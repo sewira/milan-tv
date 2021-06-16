@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMovies, getMoviesByGenre } from '../../redux/action/movieActions';
 
 import Movies from '../movies/Movies';
-import useToggle from '../../constant/useToggle';
+import CustomPagination from '../customPagination/CustomPagination';
 
 const Main = () => {
+  const [page, setPage] = useState(1);
   const [genreValue, setGenreValue] = useState({
     action: {
       id: 28,
@@ -30,6 +31,16 @@ const Main = () => {
       isCLicked: false,
     },
   });
+
+  // const buttons = [
+  //   { name: 'All' },
+  //   { name: 'Animation' },
+  //   { name: 'Action' },
+  //   { name: 'Adventure' },
+  //   { name: 'Sci-fi' },
+  //   { name: 'Comedy' },
+  // ];
+
   const { movies, loading } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
@@ -37,12 +48,12 @@ const Main = () => {
 
   const sortByGenre = (e) => {
     dispatch(getMoviesByGenre(e.target.value));
-    setIsClick(!isClick);
+    // setIsClick(!isClick);
   };
 
   useEffect(() => {
-    dispatch(getMovies());
-  }, []);
+    dispatch(getMovies(page));
+  }, [page]);
 
   return (
     <div className="home">
@@ -50,39 +61,45 @@ const Main = () => {
         <h1>Browse by Category</h1>
       </div>
 
+      {/* {buttons.map((button, index) => (
+        <button key={index} className={`btn`} onclick={sortByGenre}>
+          {button.name}
+        </button>
+      ))} */}
+
       <button className="btn" onClick={() => dispatch(getMovies())}>
         All
       </button>
       <button
-        className={isClick ? 'btn active' : 'btn'}
+        className={'btn'}
         value={genreValue.animation.id}
         onClick={sortByGenre}
       >
         Animation
       </button>
       <button
-        className={isClick ? 'btn active' : 'btn'}
+        className={'btn'}
         value={genreValue.action.id}
         onClick={sortByGenre}
       >
         Action
       </button>
       <button
-        className={isClick ? 'btn active' : 'btn'}
+        className={'btn'}
         value={genreValue.adventure.id}
         onClick={sortByGenre}
       >
         Adventure
       </button>
       <button
-        className={isClick ? 'btn active' : 'btn'}
+        className={'btn'}
         value={genreValue.sciene_fiction.id}
         onClick={sortByGenre}
       >
         Sci-fi
       </button>
       <button
-        className={isClick ? 'btn active' : 'btn'}
+        className={'btn'}
         value={genreValue.comedy.id}
         onClick={sortByGenre}
       >
@@ -102,6 +119,7 @@ const Main = () => {
               />
             ))}
       </div>
+      <CustomPagination setPage={setPage} />
     </div>
   );
 };
