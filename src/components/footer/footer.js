@@ -45,12 +45,12 @@ const footer = () => {
             <h2>Download</h2>
           </div>
           <div className="content">
-            <div className="social">
+            <div className="socials">
               <img src={googlePlay} alt="" />
               <img src={appleStore} alt="" />
             </div>
           </div>
-          <div className="title">
+          <div className="title1">
             <h2>Social Media</h2>
           </div>
           <div className="content">

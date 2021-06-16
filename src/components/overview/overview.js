@@ -4,7 +4,7 @@ import './overview.css';
 const overview = () => {
   return (
     <div className="over">
-      <button className="btn" onClick={'#'}>
+      {/* <button className="btn" onClick={'#'}>
         Overview
       </button>
       <button className="btn" onClick={'#'}>
@@ -12,7 +12,7 @@ const overview = () => {
       </button>
       <button className="btn" onClick={'#'}>
         Review
-      </button>
+      </button> */}
 
       <h2 className="info">
         Synopsis
