@@ -96,3 +96,45 @@ export const genres = [
     name: 'Western',
   },
 ];
+
+export const buttonClick = {
+  all: true,
+  animation: false,
+  action: false,
+  adventure: false,
+  scifi: false,
+  comedy: false,
+};
+
+export const handleChangeAnimation = () => {
+  return {
+    all: false,
+    animation: true,
+    action: false,
+    adventure: false,
+    scifi: false,
+    comedy: false,
+  };
+};
+
+export const handleChangeAction = () => {
+  return {
+    all: false,
+    animation: false,
+    action: true,
+    adventure: false,
+    scifi: false,
+    comedy: false,
+  };
+};
+
+export const handleChangeAdventure = () => {
+  return {
+    all: false,
+    animation: false,
+    action: false,
+    adventure: true,
+    scifi: false,
+    comedy: false,
+  };
+};

@@ -1,11 +1,11 @@
 const initialState = {
   email: '',
-  password: ''
+  password: '',
 };
 
 const loginRed = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case 'LOGIN':
       return {
         ...state,
         login: (state, action) => {

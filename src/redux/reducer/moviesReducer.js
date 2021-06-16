@@ -1,9 +1,4 @@
-import {
-  GET_ALL_MOVIES,
-  SET_LOADING,
-  GET_MOVIES_ERROR,
-  GET_MOVIES_BY_GENRE,
-} from '../action/types';
+import { GET_ALL_MOVIES, SET_LOADING, GET_MOVIES_ERROR } from '../action/types';
 
 const initialState = {
   movies: [],
@@ -19,6 +14,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         movies: payload,
+        loading: false,
       };
     case SET_LOADING: {
       return {

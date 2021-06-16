@@ -32,23 +32,11 @@ const Main = () => {
     },
   });
 
-  // const buttons = [
-  //   { name: 'All' },
-  //   { name: 'Animation' },
-  //   { name: 'Action' },
-  //   { name: 'Adventure' },
-  //   { name: 'Sci-fi' },
-  //   { name: 'Comedy' },
-  // ];
-
   const { movies, loading } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
-  const [isClick, setIsClick] = useState(false);
-
   const sortByGenre = (e) => {
     dispatch(getMoviesByGenre(e.target.value));
-    // setIsClick(!isClick);
   };
 
   useEffect(() => {
@@ -61,31 +49,30 @@ const Main = () => {
         <h1>Browse by Category</h1>
       </div>
 
-      {/* {buttons.map((button, index) => (
-        <button key={index} className={`btn`} onclick={sortByGenre}>
-          {button.name}
-        </button>
-      ))} */}
-
-      <button className="btn" onClick={() => dispatch(getMovies())}>
+      <button
+        className="btn"
+        onClick={() => {
+          dispatch(getMovies());
+        }}
+      >
         All
       </button>
       <button
-        className={'btn'}
+        className={`btn`}
         value={genreValue.animation.id}
         onClick={sortByGenre}
       >
         Animation
       </button>
       <button
-        className={'btn'}
+        className={`btn`}
         value={genreValue.action.id}
         onClick={sortByGenre}
       >
         Action
       </button>
       <button
-        className={'btn'}
+        className={`btn`}
         value={genreValue.adventure.id}
         onClick={sortByGenre}
       >

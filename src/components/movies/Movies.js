@@ -11,8 +11,8 @@ const Movies = ({ title, poster_path, genre, id }) => {
 
   return (
     <div className="card">
-      <Link to={`detail/${id}`}>
-        <img src={IMG_API + poster_path} alt="" />
+      <Link to={`${id}`}>
+        <img src={IMG_API + poster_path} alt={title} />
         <h3>{title}</h3>
         {genres.map((item) =>
           genre === item.id ? <p key={item.id}>{item.name}</p> : null

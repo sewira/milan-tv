@@ -8,7 +8,7 @@ import {
 
 export const getMovies = (page) => async (dispatch) => {
   try {
-    setLoading();
+    dispatch(setLoading());
     const res = await axios.get(FETCH_MOVIES(page));
     dispatch({
       type: GET_ALL_MOVIES,
@@ -24,7 +24,7 @@ export const getMovies = (page) => async (dispatch) => {
 
 export const getMoviesByGenre = (genre) => async (dispatch) => {
   try {
-    setLoading();
+    dispatch(setLoading());
     const res = await axios.get(`${FETCH_MOVIES_BY_GENRE(parseInt(genre))}`);
     dispatch({
       type: GET_ALL_MOVIES,
@@ -38,10 +38,10 @@ export const getMoviesByGenre = (genre) => async (dispatch) => {
   }
 };
 
-export const getMoviesBySearch = (title) => async (dispatch) => {
+export const getMoviesBySearch = (title, page) => async (dispatch) => {
   try {
-    setLoading();
-    const res = await axios.get(`${FETCH_MOVIES_BY_SEARCH(title)}`);
+    dispatch(setLoading());
+    const res = await axios.get(`${FETCH_MOVIES_BY_SEARCH(title, page)}`);
     dispatch({
       type: GET_ALL_MOVIES,
       payload: res.data.results,
