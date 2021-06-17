@@ -8,12 +8,22 @@ import Banner from '../components/banner/Banner';
 import Overview from '../components/overview/overview';
 import Review from '../components/review/Review';
 import Characters from '../components/characters/Characters';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/footer';
 
 const DetailPage = () => {
   const [detail, setDetail] = useState([]);
+  // const [data, setData] = useState([]);
   const { id } = useParams();
   const { overview, release_date, budget, revenue, runtime, status, title } =
     detail;
+
+  const hanyatest = async () => {
+    const { data } = await axios.get(
+      'https://movie-app-teamc.herokuapp.com/api/movies'
+    );
+    console.log(data.data.movies, 'test');
+  };
 
   const [isShow, setIsShow] = useState({
     overview: true,
@@ -33,8 +43,6 @@ const DetailPage = () => {
     setIsShow({ overview: false, review: false, characters: true });
   };
 
-  console.log(isShow);
-
   const fetchMoviesById = async (id) => {
     const res = await axios.get(`${FETCH_MOVIE_BY_ID(parseInt(id))}`);
 
@@ -43,6 +51,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     fetchMoviesById(id);
+    hanyatest();
   }, []);
 
   const showOverview = isShow.overview ? (
@@ -60,6 +69,7 @@ const DetailPage = () => {
 
   return (
     <div>
+      <Header />
       <Banner
         backdrop_path={detail.backdrop_path}
         overview={overview}
@@ -88,6 +98,7 @@ const DetailPage = () => {
       {showOverview}
       {showCharacters}
       {showReview}
+      <Footer />
     </div>
   );
 };

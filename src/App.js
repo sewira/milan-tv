@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import React from 'react';
+import Modal from 'react-modal';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
-import Header from './components/header/Header';
-import Footer from './components/footer/footer';
+import ProfilePage from './pages/ProfilePage';
 
+Modal.setAppElement('#root');
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
         <Switch>
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route exact path="/:id">
+          <Route exact path="/detail/:id">
             <DetailPage />
           </Route>
+          <Route exact path="/profile">
+            <ProfilePage />
+          </Route>
         </Switch>
-        <Footer />
       </Router>
     </div>
   );

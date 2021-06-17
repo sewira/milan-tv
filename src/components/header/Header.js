@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import Modal from 'react-modal';
 import Modal1 from 'react-modal';
-import { handleLogin } from '../../redux/action/loginActions';
 import { userAct } from '../../redux/action/userActions';
+import { handleLogin } from '../../redux/action/loginActions';
 import { login } from '../../userService/userService';
 import { useDispatch } from 'react-redux';
 import { getMoviesBySearch } from '../../redux/action/movieActions';
@@ -12,12 +12,10 @@ import { getMoviesBySearch } from '../../redux/action/movieActions';
 const Header = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [search, setSearch] = useState('');
   const [loginModal, setLoginModal] = useState(false);
   const [regisModal, setRegisModal] = useState(false);
-  const [search, setSearch] = useState('');
 
-  console.log(email, password);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -27,6 +25,9 @@ const Header = () => {
   };
 
   const loginHandler = (e) => {
+    e.preventDefault();
+
+    console.log(email, password);
     dispatch(
       handleLogin({
         email: email,
@@ -86,36 +87,36 @@ const Header = () => {
               </button>
 
               <h4 className="title-modal">Milan TV</h4>
+              <form onSubmit={loginHandler}>
+                <div className="email-wrapper">
+                  <label>Email</label>
+                  <br />
 
-              <div className="email-wrapper">
-                <label>Email</label>
-                <br />
+                  <input
+                    value={email}
+                    className="input-email"
+                    type="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
 
-                <input
-                  value={email}
-                  className="input-email"
-                  type="text"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                  <br />
+                </div>
 
-                <br />
-              </div>
+                <div className="password-wrapper">
+                  <label>Password</label>
+                  <br />
+                  <input
+                    value={password}
+                    className="input-password"
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
 
-              <div className="password-wrapper">
-                <label>Password</label>
-                <br />
-                <input
-                  value={password}
-                  className="input-password"
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-
-              <button className="btnLogin" onClick={() => loginHandler()}>
-                Login
-              </button>
-
+                <button className="btnLogin" type="submit">
+                  Login
+                </button>
+              </form>
               <p className="new-acc">
                 Don't have an account?{' '}
                 <span
