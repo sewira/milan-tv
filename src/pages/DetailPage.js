@@ -13,17 +13,12 @@ import Footer from '../components/footer/footer';
 
 const DetailPage = () => {
   const [detail, setDetail] = useState([]);
-  // const [data, setData] = useState([]);
+
   const { id } = useParams();
   const { overview, release_date, budget, revenue, runtime, status, title } =
     detail;
 
-  const hanyatest = async () => {
-    const { data } = await axios.get(
-      'https://movie-app-teamc.herokuapp.com/api/movies'
-    );
-    console.log(data.data.movies, 'test');
-  };
+  console.log(detail);
 
   const [isShow, setIsShow] = useState({
     overview: true,
@@ -51,7 +46,6 @@ const DetailPage = () => {
 
   useEffect(() => {
     fetchMoviesById(id);
-    hanyatest();
   }, []);
 
   const showOverview = isShow.overview ? (
