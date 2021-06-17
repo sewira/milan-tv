@@ -34,7 +34,7 @@
 }
 
 .email-wrapper{
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .password-wrapper{
@@ -97,4 +97,8 @@ span{
   color: rgba(254, 2, 78, 1);
   cursor: pointer;
   font-weight: bolder;
+}
+
+.btn{
+  cursor: pointer;
 }

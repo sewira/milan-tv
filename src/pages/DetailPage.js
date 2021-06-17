@@ -14,6 +14,7 @@ import {
   Route,
   Link,
   useRouteMatch,
+  NavLink
 } from 'react-router-dom';
 
 import Banner from '../components/banner/Banner';
@@ -41,19 +42,19 @@ const DetailPage = () => {
       <Router>
         <div className="link-details">
           <div>
-            <Link className="btn" to={`${url}/overview`}>
+            <NavLink className="btn" to={`${url}/overview`}>
               Overview
-            </Link>
+            </NavLink>
           </div>
           <div>
-            <Link className="btn" to={`${url}/characters`}>
+            <NavLink className="btn" to={`${url}/characters`}>
               Characters
-            </Link>
+            </NavLink>
           </div>
           <div>
-            <Link className="btn" to={`${url}/review`}>
+            <NavLink className="btn" to={`${url}/review`}>
               Review
-            </Link>
+            </NavLink>
           </div>
         </div>
         <div>
@@ -61,10 +62,10 @@ const DetailPage = () => {
             <Route exact path={`${path}/overview`}>
               <Overview />
             </Route>
-            <Route exact path={`${url}/characters`}>
+            <Route exact path={`${path}/characters`}>
               <Characters />
             </Route>
-            <Route exact path={`${url}/review`}>
+            <Route exact path={`${path}/review`}>
               <Review />
             </Route>
           </Switch>

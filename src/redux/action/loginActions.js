@@ -1,9 +1,10 @@
-export const handleLogin = (email, password) => {
+export const handleLogin = (email, token, fullname) => {
     return {
       type: "LOGIN",
       payload: {
         email:email,
-        password:password,
+        token:token,
+        fullname:fullname
       },
     };
   };
