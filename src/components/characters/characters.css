@@ -1,0 +1,38 @@
+.gambar{
+    width: 100%;
+    height: 100%;
+    padding: 12px 50px;
+
+}
+.karakter-item .nama{
+    padding: inherit ;
+    /* display: inline; */
+
+
+   
+}
+.karakter {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.karakter-item {
+    width: 200px;
+    height: 200px;
+   overflow: hidden;
+   margin-left: 10px;
+   padding: 10px 40px;
+  
+  
+   
+}
+
+    
+    
+    
+
+
+
+
+
+ 
