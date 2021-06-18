@@ -46,3 +46,8 @@
 .btn.active {
   background: #eb507f;
 }
+
+.spinner {
+  margin: auto;
+  padding: 100px;
+}

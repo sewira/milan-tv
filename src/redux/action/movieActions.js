@@ -1,26 +1,36 @@
 import axios from 'axios';
-import { GET_ALL_MOVIES, SET_LOADING, GET_MOVIES_ERROR } from './types';
 import {
-  FETCH_ALL_MOVIES,
-  FETCH_MOVIES_BY_GENRE,
-  FETCH_MOVIES_BY_SEARCH,
-} from '../../constant';
+  GET_ALL_MOVIES,
+  SET_LOADING,
+  GET_MOVIES_ERROR,
+  SET_GENRE,
+} from './types';
+import { FETCH_ALL_MOVIES } from '../../constant';
 
 export const getMovies = () => async (dispatch) => {
   try {
     dispatch(setLoading());
     const res = await axios.get(FETCH_ALL_MOVIES);
-
+    console.log(res.data.data);
     dispatch({
       type: GET_ALL_MOVIES,
       payload: res.data.data,
     });
   } catch (error) {
-    // dispatch({
-    //   type: GET_MOVIES_ERROR,
-    //   payload: error.response.data,
-    // });
+    dispatch({
+      type: GET_MOVIES_ERROR,
+      payload: error.response.data,
+    });
   }
+};
+
+export const getMoviesByGenre = (genre_id) => {
+  return (dispatch, getState) => {
+    dispatch(setLoading());
+    const { movies } = getState().movies;
+    const res = movies.filter((movie) => movie.category_id === genre_id);
+    dispatch({ type: SET_GENRE, payload: res });
+  };
 };
 
 // export const getMoviesByGenre = (genre) => async (dispatch) => {

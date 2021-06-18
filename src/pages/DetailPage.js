@@ -16,6 +16,8 @@ const DetailPage = () => {
 
   const { id } = useParams();
 
+  console.log(detail);
+
   const {
     budget,
     description,
@@ -31,7 +33,6 @@ const DetailPage = () => {
     reviews,
   } = detail;
 
-  console.log(detail);
   const [isShow, setIsShow] = useState({
     overview: true,
     characters: false,
@@ -69,7 +70,9 @@ const DetailPage = () => {
     />
   ) : null;
   const showCharacters = isShow.characters ? <Characters /> : null;
-  const showReview = isShow.review ? <Review reviews={reviews} /> : null;
+  const showReview = isShow.review ? (
+    <Review reviews={reviews} id={id} />
+  ) : null;
 
   return (
     <div>

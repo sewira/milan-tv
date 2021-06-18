@@ -5,7 +5,9 @@ import ReactStars from 'react-rating-stars-component';
 const Banner = ({ title, rating, description, poster, trailer }) => {
   return (
     <div className="banner">
-      <img className="banner-img" src={poster} alt="title" />
+      <div className="banner-wrapper">
+        <img className="banner-img" src={poster} alt="title" />
+      </div>
       <div className="banner-content">
         <h1>{title}</h1>
         <h2>

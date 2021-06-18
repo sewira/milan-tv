@@ -1,46 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './review.css';
-import foto from '../../assets/bc.png';
 import ReactStars from 'react-rating-stars-component';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import { useSelector } from 'react-redux';
 
-function Review({ reviews }) {
+function Review({ reviews, id }) {
+  console.log(id);
+  const [star, setStar] = useState();
+  const [headLine, setHeadLine] = useState('');
+  const [deskripsi, setDeskripsi] = useState('');
+
+  const { token } = useSelector((state) => state.login);
+  console.log(token);
+
+  const ratingChanged = (newRating) => {
+    setStar(newRating);
+  };
+  const user_id = jwt_decode(token);
+  const submitReview = (e) => {
+    e.preventDefault();
+
+    const data = {
+      user_id: user_id,
+      movie_id: id,
+      headline: headLine,
+      review: deskripsi,
+      rating: star,
+    };
+    console.log(data);
+
+    axios
+      .post('https://movie-app-teamc.herokuapp.com/api/create/review', data)
+      .then((response) => console.log(response))
+      .catch((err) => err.response.message);
+  };
+
   return (
-    <div>
+    <div className="review-container">
       <div className="main-input">
-        {reviews.length > 0 ? (
-          <div className="main-review">
-            <div className="user-container">
-              <div>
-                <img className="foto1" src={foto} alt="" />
-              </div>
-              <div>
-                <p className="nama-user">Yudi Kaka</p>
-                <p className="user-review">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore
-                  <br /> magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco <br />
-                  laboris nisi ut aliquip ex ea commodo consequat.Ut enim ad
-                  minim veniam, quis nostrud exercitation <br />
-                  ullamco laboris nisi ut aliquip ex ea commodo consequat
-                </p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          'You should review it'
-        )}
         <div>
-          <img className="foto1" src={foto} />
-        </div>
-        <div>
-          <p className="nama-user">Yudi Kaka</p>
-          <ReactStars classNames="bintang" size={30} activeColor="red" />
-          <input
-            className="input-review"
-            type="text"
-            placeholder="Leave a review"
+          <ReactStars
+            classNames="bintang"
+            size={30}
+            activeColor="red"
+            count={10}
+            onChange={ratingChanged}
+            value={star}
           />
+          <form onSubmit={submitReview} className="form-column">
+            <input
+              type="text"
+              placeholder="Headline"
+              className="headline"
+              value={headLine}
+              onChange={(e) => setHeadLine(e.target.value)}
+            />
+            <input
+              className="input-review"
+              type="text"
+              placeholder="Leave a review"
+              value={deskripsi}
+              onChange={(e) => setDeskripsi(e.target.value)}
+            />
+            <input type="submit" value="Submit" className="btn btn-review" />
+          </form>
+        </div>
+      </div>
+
+      <div className="main-review">
+        <div className="user-container">
+          {reviews.length > 0
+            ? reviews.map((review) => (
+                <div className="review-container">
+                  <p className="nama-user">{review.headline}</p>
+                  <p className="user-review">{review.review}</p>
+                </div>
+              ))
+            : 'No one review yet'}
         </div>
       </div>
     </div>

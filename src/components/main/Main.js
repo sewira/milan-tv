@@ -1,38 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import './main.css';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovies, getMoviesByGenre } from '../../redux/action/movieActions';
+import {
+  onlyAll,
+  onlyAsian,
+  onlyHollywood,
+  onlyBollywood,
+  onlyDrakor,
+  onlyHorror,
+} from '../../constant/';
 
 import Movies from '../movies/Movies';
 import CustomPagination from '../customPagination/CustomPagination';
 
 const Main = () => {
   const [page, setPage] = useState(1);
-  const [genreValue, setGenreValue] = useState({
-    action: {
-      id: 28,
-      isCLicked: false,
-    },
-    animation: {
-      id: 16,
-      isCLicked: false,
-    },
-    adventure: {
-      id: 12,
-      isCLicked: false,
-    },
-    sciene_fiction: {
-      id: 878,
-      isCLicked: false,
-    },
-    comedy: {
-      id: 35,
-      isCLicked: false,
-    },
+  const [isShow, setIsShow] = useState({
+    all: true,
+    hollywood: false,
+    bollywood: false,
+    drakor: false,
+    asian: false,
+    horror: false,
   });
 
-  const { movies, loading } = useSelector((state) => state.movies);
+  console.log(isShow);
+
+  const showAllMovies = () => {
+    setIsShow(onlyAll);
+  };
+  const showAsianMovie = () => {
+    setIsShow(onlyAsian);
+  };
+  const showHollywoodMovie = () => {
+    setIsShow(onlyHollywood);
+  };
+  const showBollywoodMovie = () => {
+    setIsShow(onlyBollywood);
+  };
+  const showDrakorMovie = () => {
+    setIsShow(onlyDrakor);
+  };
+  const showHorrorMovie = () => {
+    setIsShow(onlyHorror);
+  };
+
+  const { movies, loading, movieGenre } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
   // const sortByGenre = (e) => {
@@ -43,67 +57,137 @@ const Main = () => {
     dispatch(getMovies());
   }, []);
 
+  const showAll = isShow.all
+    ? movies.map((movie) => (
+        <Movies
+          key={movie.id}
+          title={movie.title}
+          poster={movie.poster}
+          id={movie.id}
+        />
+      ))
+    : null;
+
+  const showAsian = isShow.asian
+    ? movieGenre.map((movie) => (
+        <Movies
+          key={movie.id}
+          title={movie.title}
+          poster={movie.poster}
+          id={movie.id}
+        />
+      ))
+    : null;
+
+  const showHollywood = isShow.hollywood
+    ? movieGenre.map((movie) => (
+        <Movies
+          key={movie.id}
+          title={movie.title}
+          poster={movie.poster}
+          id={movie.id}
+        />
+      ))
+    : null;
+
+  const showBollywood = isShow.bollywood
+    ? movieGenre.map((movie) => (
+        <Movies
+          key={movie.id}
+          title={movie.title}
+          poster={movie.poster}
+          id={movie.id}
+        />
+      ))
+    : null;
+
+  const showDrakor = isShow.drakor
+    ? movieGenre.map((movie) => (
+        <Movies
+          key={movie.id}
+          title={movie.title}
+          poster={movie.poster}
+          id={movie.id}
+        />
+      ))
+    : null;
+
+  const showHorror = isShow.horror
+    ? movieGenre.map((movie) => (
+        <Movies
+          key={movie.id}
+          title={movie.title}
+          poster={movie.poster}
+          id={movie.id}
+        />
+      ))
+    : null;
+
   return (
     <div className="home">
       <div className="title">
         <h1>Browse by Category</h1>
       </div>
 
-      {/* <button
-        className="btn"
+      <button
+        className={`btn ${isShow.all ? 'active' : null}`}
         onClick={() => {
           dispatch(getMovies());
+          showAllMovies();
         }}
       >
         All
       </button>
       <button
-        className={`btn`}
-        value={genreValue.animation.id}
-        onClick={sortByGenre}
+        className={`btn  ${isShow.asian ? 'active' : null}`}
+        onClick={() => {
+          dispatch(getMoviesByGenre(6)), showAsianMovie();
+        }}
       >
-        Animation
+        Asian
       </button>
       <button
-        className={`btn`}
-        value={genreValue.action.id}
-        onClick={sortByGenre}
+        className={`btn  ${isShow.hollywood ? 'active' : null}`}
+        onClick={() => {
+          dispatch(getMoviesByGenre(8)), showHollywoodMovie();
+        }}
       >
-        Action
+        Hollywood
       </button>
       <button
-        className={`btn`}
-        value={genreValue.adventure.id}
-        onClick={sortByGenre}
+        className={`btn  ${isShow.bollywood ? 'active' : null}`}
+        onClick={() => {
+          dispatch(getMoviesByGenre(7)), showBollywoodMovie();
+        }}
       >
-        Adventure
+        Bollywood
       </button>
+
       <button
-        className={'btn'}
-        value={genreValue.sciene_fiction.id}
-        onClick={sortByGenre}
+        className={`btn  ${isShow.drakor ? 'active' : null}`}
+        onClick={() => {
+          dispatch(getMoviesByGenre(4)), showDrakorMovie();
+        }}
       >
-        Sci-fi
+        Drakor
       </button>
+
       <button
-        className={'btn'}
-        value={genreValue.comedy.id}
-        onClick={sortByGenre}
+        className={`btn  ${isShow.horror ? 'active' : null}`}
+        onClick={() => {
+          dispatch(getMoviesByGenre(2)), showHorrorMovie();
+        }}
       >
-        Comedy
-      </button> */}
+        Horror
+      </button>
 
       <div className="card-container">
-        {loading
-          ? 'Loading...'
-          : movies.map((movie) => (
-              <Movies
-                key={movie.id}
-                title={movie.title}
-                poster={movie.poster}
-                id={movie.id}
-              />
-            ))}
+        {showAll}
+        {showAsian}
+        {showHollywood}
+        {showBollywood}
+        {showDrakor}
+        {showHorror}
       </div>
       <CustomPagination setPage={setPage} />
     </div>

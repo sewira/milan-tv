@@ -4,8 +4,6 @@
 //   return `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
 // };
 
-export const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-
 // export const FETCH_MOVIES_BY_GENRE = (id) => {
 //   return `https://api.themoviedb.org/3/discover/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}&with_watch_monetization_types=flatrate`;
 // };
@@ -18,7 +16,7 @@ export const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 //   return `https://api.themoviedb.org/3/search/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&query=${title}&page=1&include_adult=false`;
 // };
 
-export const FETCH_ALL_MOVIES = `https://movie-app-teamc.herokuapp.com/api/moviesWithReviewAndUser`;
+export const FETCH_ALL_MOVIES = `https://movie-app-teamc.herokuapp.com/api/moviesWithGenre`;
 
 export const FETCH_MOVIES_BY_ID = (id) => {
   return `https://movie-app-teamc.herokuapp.com/api/movie/${id}`;
@@ -28,86 +26,7 @@ export const FETCH_MOVIES_BY_SEARCH = (title) => {
   return `https://movie-app-teamc.herokuapp.com/api/find/movies/?title=${title}`;
 };
 
-export const genres = [
-  {
-    id: 28,
-    name: 'Action',
-  },
-  {
-    id: 12,
-    name: 'Adventure',
-  },
-  {
-    id: 16,
-    name: 'Animation',
-  },
-  {
-    id: 35,
-    name: 'Comedy',
-  },
-  {
-    id: 80,
-    name: 'Crime',
-  },
-  {
-    id: 99,
-    name: 'Documentary',
-  },
-  {
-    id: 18,
-    name: 'Drama',
-  },
-  {
-    id: 10751,
-    name: 'Family',
-  },
-  {
-    id: 14,
-    name: 'Fantasy',
-  },
-  {
-    id: 36,
-    name: 'History',
-  },
-  {
-    id: 27,
-    name: 'Horror',
-  },
-  {
-    id: 10402,
-    name: 'Music',
-  },
-  {
-    id: 9648,
-    name: 'Mystery',
-  },
-  {
-    id: 10749,
-    name: 'Romance',
-  },
-  {
-    id: 878,
-    name: 'Science Fiction',
-  },
-  {
-    id: 10770,
-    name: 'TV Movie',
-  },
-  {
-    id: 53,
-    name: 'Thriller',
-  },
-  {
-    id: 10752,
-    name: 'War',
-  },
-  {
-    id: 37,
-    name: 'Western',
-  },
-];
-
-export const buttonClick = {
+export const onlyAll = {
   all: true,
   animation: false,
   action: false,
@@ -116,35 +35,47 @@ export const buttonClick = {
   comedy: false,
 };
 
-export const handleChangeAnimation = () => {
-  return {
-    all: false,
-    animation: true,
-    action: false,
-    adventure: false,
-    scifi: false,
-    comedy: false,
-  };
+export const onlyAsian = {
+  all: false,
+  hollywood: false,
+  bollywood: false,
+  drakor: false,
+  asian: true,
+  horror: false,
 };
 
-export const handleChangeAction = () => {
-  return {
-    all: false,
-    animation: false,
-    action: true,
-    adventure: false,
-    scifi: false,
-    comedy: false,
-  };
+export const onlyHollywood = {
+  all: false,
+  hollywood: true,
+  bollywood: false,
+  drakor: false,
+  asian: false,
+  horror: false,
 };
 
-export const handleChangeAdventure = () => {
-  return {
-    all: false,
-    animation: false,
-    action: false,
-    adventure: true,
-    scifi: false,
-    comedy: false,
-  };
+export const onlyBollywood = {
+  all: false,
+  hollywood: false,
+  bollywood: true,
+  drakor: false,
+  asian: false,
+  horror: false,
+};
+
+export const onlyDrakor = {
+  all: false,
+  hollywood: false,
+  bollywood: false,
+  drakor: true,
+  asian: false,
+  horror: false,
+};
+
+export const onlyHorror = {
+  all: false,
+  hollywood: false,
+  bollywood: false,
+  drakor: false,
+  asian: false,
+  horror: true,
 };
