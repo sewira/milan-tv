@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: relative;
 }
 
 .navbar-item input {
@@ -23,32 +24,32 @@
   margin-right: 10px;
 }
 
-.ReactModal__Content{
+.ReactModal__Content {
   width: 500px;
   height: 600px;
   margin-left: 370px;
 }
 
-.title-modal{
+.title-modal {
   text-align: center;
 }
 
-.email-wrapper{
+.email-wrapper {
   margin-top: 30px;
 }
 
-.password-wrapper{
+.password-wrapper {
   margin-top: 30px;
 }
 
-label{
+label {
   color: grey;
   font-family: sans-serif;
   letter-spacing: 1px;
   margin-left: 50px;
 }
 
-.input-email{
+.input-email {
   margin-left: 50px;
   width: 380px;
   height: 40px;
@@ -56,7 +57,7 @@ label{
   border: none;
 }
 
-.input-password{
+.input-password {
   margin-left: 50px;
   width: 380px;
   height: 40px;
@@ -64,7 +65,7 @@ label{
   border: none;
 }
 
-.btnClose{
+.btnClose {
   position: absolute;
   margin-left: 470px;
   background-color: white;
@@ -73,7 +74,7 @@ label{
   font-size: 20px;
 }
 
-.btnLogin{
+.btnLogin {
   width: 385px;
   height: 40px;
   position: absolute;
@@ -87,18 +88,37 @@ label{
   cursor: pointer;
 }
 
-.new-acc{
+.new-acc {
   position: absolute;
   margin-left: 130px;
   margin-top: 220px;
 }
 
-span{
+span {
   color: rgba(254, 2, 78, 1);
   cursor: pointer;
   font-weight: bolder;
 }
 
-.btn{
+.btn {
   cursor: pointer;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 10;
+  background: #eb507f;
+  align-items: center;
+  padding: 20px 30px;
+  color: white;
+  position: absolute;
+
+  width: 100px;
+}
+
+.dropdown-img {
+  width: 50px;
+  border-radius: 50%;
 }

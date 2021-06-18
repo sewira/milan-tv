@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FETCH_MOVIE_BY_ID } from '../constant';
+import { FETCH_MOVIES_BY_ID } from '../constant';
 import { useParams } from 'react-router-dom';
 import './DetailPage.css';
 
@@ -15,11 +15,23 @@ const DetailPage = () => {
   const [detail, setDetail] = useState([]);
 
   const { id } = useParams();
-  const { overview, release_date, budget, revenue, runtime, status, title } =
-    detail;
+
+  const {
+    budget,
+    description,
+    director,
+    featured_song,
+    rating,
+    id: id_movie,
+    release_date,
+    trailer,
+    poster,
+    synopsis,
+    title,
+    reviews,
+  } = detail;
 
   console.log(detail);
-
   const [isShow, setIsShow] = useState({
     overview: true,
     characters: false,
@@ -39,9 +51,8 @@ const DetailPage = () => {
   };
 
   const fetchMoviesById = async (id) => {
-    const res = await axios.get(`${FETCH_MOVIE_BY_ID(parseInt(id))}`);
-
-    setDetail(res.data);
+    const res = await axios.get(`${FETCH_MOVIES_BY_ID(id)}`);
+    setDetail(res.data.data);
   };
 
   useEffect(() => {
@@ -50,24 +61,25 @@ const DetailPage = () => {
 
   const showOverview = isShow.overview ? (
     <Overview
-      overview={overview}
+      synopsis={synopsis}
       release_date={release_date}
       budget={budget}
-      revenue={revenue}
-      status={status}
-      runtime={runtime}
+      director={director}
+      featured_song={featured_song}
     />
   ) : null;
   const showCharacters = isShow.characters ? <Characters /> : null;
-  const showReview = isShow.review ? <Review /> : null;
+  const showReview = isShow.review ? <Review reviews={reviews} /> : null;
 
   return (
     <div>
       <Header />
       <Banner
-        backdrop_path={detail.backdrop_path}
-        overview={overview}
         title={title}
+        rating={rating}
+        description={description}
+        poster={poster}
+        trailer={trailer}
       />
       <div className="link-details">
         <button

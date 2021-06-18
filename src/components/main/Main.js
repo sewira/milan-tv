@@ -35,13 +35,13 @@ const Main = () => {
   const { movies, loading } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
-  const sortByGenre = (e) => {
-    dispatch(getMoviesByGenre(e.target.value));
-  };
+  // const sortByGenre = (e) => {
+  //   dispatch(getMoviesByGenre(e.target.value));
+  // };
 
   useEffect(() => {
-    dispatch(getMovies(page));
-  }, [page]);
+    dispatch(getMovies());
+  }, []);
 
   return (
     <div className="home">
@@ -49,7 +49,7 @@ const Main = () => {
         <h1>Browse by Category</h1>
       </div>
 
-      <button
+      {/* <button
         className="btn"
         onClick={() => {
           dispatch(getMovies());
@@ -91,7 +91,7 @@ const Main = () => {
         onClick={sortByGenre}
       >
         Comedy
-      </button>
+      </button> */}
 
       <div className="card-container">
         {loading
@@ -100,8 +100,7 @@ const Main = () => {
               <Movies
                 key={movie.id}
                 title={movie.title}
-                genre={movie.genre_ids[0]}
-                poster_path={movie.poster_path}
+                poster={movie.poster}
                 id={movie.id}
               />
             ))}

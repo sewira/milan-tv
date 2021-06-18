@@ -9,7 +9,7 @@ import { registrasi } from '../../userService/userService';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesBySearch } from '../../redux/action/movieActions';
 import jwt_decode from 'jwt-decode';
-import { Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 const Header = () => {
   const [email, setEmail] = useState('');
@@ -20,19 +20,21 @@ const Header = () => {
   const [usernameRegis, setUsernameRegis] = useState('');
   const [emailRegis, setEmailRegis] = useState('');
   const [passwordRegis, setPasswordRegis] = useState('');
-  const [profilePicRegis, setProfilePicRegis] = useState('');
+  const [profilePicRegis, setProfilePicRegis] = useState(
+    'https://woises.net/public/img/defaultpic.jpg'
+  );
 
   const [loginModal, setLoginModal] = useState(false);
   const [regisModal, setRegisModal] = useState(false);
 
   const dispatch = useDispatch();
-  const fullnames = useSelector((state) => state.login);
+  const { token, fullname } = useSelector((state) => state.login);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getMoviesBySearch(search));
-    setSearch('');
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(getMoviesBySearch(search));
+  //   setSearch('');
+  // };
 
   const loginHandler = (e) => {
     const store = window.localStorage;
@@ -85,7 +87,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-item">
-        <form onSubmit={handleSubmit}>
+        <form>
           <input
             type="text"
             placeholder="search movie"
@@ -97,7 +99,7 @@ const Header = () => {
 
       <div>
         {
-          fullnames.token === '' ? (
+          token === '' ? (
             <div className="navbar-item">
               <div onClick={(e) => console.log(e.target)}>
                 <p onClick={() => setLoginModal(true)}>Sign in</p>
@@ -226,17 +228,6 @@ const Header = () => {
                       <br />
                     </div>
 
-                    <div className="password-wrapper">
-                      <label>Profil Picture</label>
-                      <br />
-                      <input
-                        value={profilePicRegis}
-                        className="input-password"
-                        type="text"
-                        onChange={(e) => setProfilePicRegis(e.target.value)}
-                      />
-                    </div>
-
                     <button className="btnLogin" onClick={() => regisHandler()}>
                       Register
                     </button>
@@ -257,18 +248,27 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div className="mb-2">
-              {['down'].map((direction) => (
-                <DropdownButton
-                  onClick={() => logoutHandler()}
-                  as={ButtonGroup}
-                  key={direction}
-                  id={`dropdown-button-drop-${direction}`}
-                  drop={direction}
-                  variant="secondary"
-                  title={` Welcome, ${fullnames.fullname} `}
-                ></DropdownButton>
-              ))}
+            <div className="mb-2 ">
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <img
+                    className="dropdown-img"
+                    src="https://woises.net/public/img/defaultpic.jpg"
+                    alt=""
+                  />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="dropdown-menu">
+                  <Dropdown.Item href="#/action-1" disabled>
+                    {fullname}
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Help</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" onClick={logoutHandler}>
+                    Logout
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           )
           // <div className="profile-user" onClick={()=> {logoutHandler();}} >welcome, {fullnames.fullname}</div>
@@ -277,4 +277,5 @@ const Header = () => {
     </div>
   );
 };
+
 export default Header;
