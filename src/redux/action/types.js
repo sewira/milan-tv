@@ -4,3 +4,4 @@ export const GET_MOVIES_ERROR = 'GET_MOVIES_ERROR';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
 export const LOGIN = 'LOGIN';
 export const SET_GENRE = 'SET_GENRE';
+export const SET_MOVES_SEARCH = 'SET_MOVES_SEARCH';

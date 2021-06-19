@@ -4,8 +4,9 @@ import {
   SET_LOADING,
   GET_MOVIES_ERROR,
   SET_GENRE,
+  SET_MOVES_SEARCH,
 } from './types';
-import { FETCH_ALL_MOVIES } from '../../constant';
+import { FETCH_ALL_MOVIES, FETCH_MOVIES_BY_SEARCH } from '../../constant';
 
 export const getMovies = (page) => async (dispatch) => {
   try {
@@ -16,43 +17,46 @@ export const getMovies = (page) => async (dispatch) => {
       payload: res.data.data,
     });
   } catch (error) {
-    // dispatch({
-    //   type: GET_MOVIES_ERROR,
-    //   payload: error.response.data,
-    // });
-    console.log(error.response.data);
+    console.log(error);
   }
 };
 
-export const getMoviesByGenre = (genre_id) => {
-  return (dispatch, getState) => {
+export const getMoviesByGenre = (genre_id) => async (dispatch) => {
+  try {
     dispatch(setLoading());
-    const { movies } = getState().movies;
-    const res = movies.filter((movie) => movie.category_id === genre_id);
-    dispatch({ type: SET_GENRE, payload: res });
-  };
+    const res = await axios.get(
+      'https://movie-app-teamc.herokuapp.com/api/movies'
+    );
+    const result = res.data.data.movies.filter(
+      (movie) => movie.category_id === genre_id
+    );
+    dispatch({ type: SET_GENRE, payload: result });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMoviesBySearch = (title) => async (dispatch) => {
+  try {
+    dispatch(setLoading());
+    const res = await axios.get(`${FETCH_MOVIES_BY_SEARCH(title)}`);
+    console.log(res.data.data);
+    dispatch({
+      type: GET_ALL_MOVIES,
+      payload: res.data.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_MOVIES_ERROR,
+      payload: error.response.data,
+    });
+  }
 };
 
 // export const getMoviesByGenre = (genre) => async (dispatch) => {
 //   try {
 //     dispatch(setLoading());
 //     const res = await axios.get(`${FETCH_MOVIES_BY_GENRE(parseInt(genre))}`);
-//     dispatch({
-//       type: GET_ALL_MOVIES,
-//       payload: res.data.results,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: GET_MOVIES_ERROR,
-//       payload: error.response.data,
-//     });
-//   }
-// };
-
-// export const getMoviesBySearch = (title, page) => async (dispatch) => {
-//   try {
-//     dispatch(setLoading());
-//     const res = await axios.get(`${FETCH_MOVIES_BY_SEARCH(title, page)}`);
 //     dispatch({
 //       type: GET_ALL_MOVIES,
 //       payload: res.data.results,

@@ -47,7 +47,6 @@
   background: #eb507f;
 }
 
-.spinner {
-  margin: auto;
-  padding: 100px;
+.bar {
+  margin: 20px 50%;
 }

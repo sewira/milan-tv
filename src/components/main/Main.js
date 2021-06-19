@@ -25,9 +25,11 @@ const Main = () => {
     horror: false,
   });
 
-  console.log(page);
+  const { movies, movieGenre } = useSelector((state) => state.movies);
+  const dispatch = useDispatch();
 
   const showAllMovies = () => {
+    window.location.reload();
     setIsShow(onlyAll);
   };
   const showAsianMovie = () => {
@@ -45,9 +47,6 @@ const Main = () => {
   const showHorrorMovie = () => {
     setIsShow(onlyHorror);
   };
-
-  const { movies, movieGenre } = useSelector((state) => state.movies);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getMovies(page));

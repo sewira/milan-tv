@@ -3,11 +3,13 @@ import {
   SET_LOADING,
   GET_MOVIES_ERROR,
   SET_GENRE,
+  SET_MOVES_SEARCH,
 } from '../action/types';
 
 const initialState = {
   movies: [],
   movieGenre: [],
+  movieSearch: [],
   loading: false,
   error: null,
 };
@@ -32,6 +34,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    }
+    case SET_MOVES_SEARCH: {
+      return {
+        ...state,
+        loading: false,
+        movieSearch: payload,
       };
     }
     case GET_MOVIES_ERROR:

@@ -5,8 +5,28 @@ import Header from '../components/header/Header';
 import Footer from '../components/footer/footer';
 
 const HomePage = () => {
-  const store = window.localStorage;
-  console.log(store);
+  // const showMovieBySearch = () => {
+  //   setIsShow({
+  //     all: false,
+  //     hollywood: false,
+  //     bollywood: false,
+  //     drakor: false,
+  //     asian: false,
+  //     horror: false,
+  //   });
+
+  //   movieSearch.length > 0
+  //     ? movieSearch.map((movie) => (
+  //         <Movies
+  //           key={movie.id}
+  //           title={movie.title}
+  //           poster={movie.poster}
+  //           id={movie.id}
+  //         />
+  //       ))
+  //     : null;
+  // };
+
   return (
     <div>
       <Header />

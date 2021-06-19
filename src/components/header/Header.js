@@ -30,11 +30,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const { token, fullname } = useSelector((state) => state.login);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(getMoviesBySearch(search));
-  //   setSearch('');
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getMoviesBySearch(search));
+    setSearch('');
+  };
 
   const loginHandler = (e) => {
     const store = window.localStorage;
@@ -96,7 +96,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-item">
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="search movie"

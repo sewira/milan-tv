@@ -17,7 +17,7 @@
 // };
 
 export const FETCH_ALL_MOVIES = (page) => {
-  return `https://movie-app-teamc.herokuapp.com/api/moviesWithGenre/?page=${page}&size=10`;
+  return `https://movie-app-teamc.herokuapp.com/api/movies/pagination?page=${page}&size=10  `;
 };
 
 export const FETCH_MOVIES_BY_ID = (id) => {
