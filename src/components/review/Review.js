@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './review.css';
 import ReactStars from 'react-rating-stars-component';
 import axios from 'axios';
@@ -6,35 +6,59 @@ import jwt_decode from 'jwt-decode';
 import { useSelector } from 'react-redux';
 
 function Review({ reviews, id }) {
-  console.log(id);
   const [star, setStar] = useState();
   const [headLine, setHeadLine] = useState('');
   const [deskripsi, setDeskripsi] = useState('');
+  const [isUser, setIsUser] = useState(false);
 
   const { token } = useSelector((state) => state.login);
+
+  if (token === '') setIsUser(true);
+
   console.log(token);
 
   const ratingChanged = (newRating) => {
     setStar(newRating);
   };
   const user_id = jwt_decode(token);
+
   const submitReview = (e) => {
     e.preventDefault();
+    // prettier-ignore
+
+    const config = {
+      headers: { Authorization: token}
+  };
+
+    console.log(config.headers + 'headers');
 
     const data = {
-      user_id: user_id,
+      user_id: user_id.id,
       movie_id: id,
       headline: headLine,
       review: deskripsi,
       rating: star,
     };
+
     console.log(data);
 
     axios
-      .post('https://movie-app-teamc.herokuapp.com/api/create/review', data)
+      .post(
+        'https://movie-app-teamc.herokuapp.com/api/create/review',
+        data,
+        config
+      )
       .then((response) => console.log(response))
       .catch((err) => err.response.message);
   };
+
+  useEffect(() => {
+    if (token) {
+      setIsUser(true);
+    } else {
+      setIsUser(false);
+    }
+  }, [token]);
 
   return (
     <div className="review-container">

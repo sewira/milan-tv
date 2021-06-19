@@ -17,11 +17,11 @@ const CustomPagination = ({ setPage }) => {
       }}
     >
       <Pagination
-        count={5}
+        count={4}
         shape="rounded"
         hideNextButton
         hidePrevButton
-        onChange={(e) => handleChangePage(e.target.textContent)}
+        onChange={(e) => handleChangePage(`${e.target.textContent - 1}`)}
         size="large"
       />
     </div>

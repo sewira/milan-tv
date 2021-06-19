@@ -16,8 +16,6 @@ const DetailPage = () => {
 
   const { id } = useParams();
 
-  console.log(detail);
-
   const {
     budget,
     description,
@@ -30,7 +28,8 @@ const DetailPage = () => {
     poster,
     synopsis,
     title,
-    reviews,
+    UserReview,
+    chars,
   } = detail;
 
   const [isShow, setIsShow] = useState({
@@ -58,7 +57,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     fetchMoviesById(id);
-  }, []);
+  }, [UserReview]);
 
   const showOverview = isShow.overview ? (
     <Overview
@@ -69,9 +68,11 @@ const DetailPage = () => {
       featured_song={featured_song}
     />
   ) : null;
-  const showCharacters = isShow.characters ? <Characters /> : null;
+  const showCharacters = isShow.characters ? (
+    <Characters chars={chars} />
+  ) : null;
   const showReview = isShow.review ? (
-    <Review reviews={reviews} id={id} />
+    <Review reviews={UserReview} id={id} />
   ) : null;
 
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import './banner.css';
-import { IMG_API } from '../../constant';
 import ReactStars from 'react-rating-stars-component';
 const Banner = ({ title, rating, description, poster, trailer }) => {
   return (

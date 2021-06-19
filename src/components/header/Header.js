@@ -52,22 +52,31 @@ const Header = () => {
   };
 
   const regisHandler = (e) => {
-    registrasi(
-      fullnameRegis,
-      usernameRegis,
-      emailRegis,
-      passwordRegis,
-      profilePicRegis
-    )
-      .then((response) => {
-        alert('Registrasi Success');
-        console.log(response);
-        setRegisModal(false);
-        setLoginModal(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (
+      fullnameRegis.length < 6 &&
+      usernameRegis.length < 6 &&
+      emailRegis.length < 6 &&
+      passwordRegis.length < 6
+    ) {
+      alert('All input need 6 or more characters');
+    } else {
+      registrasi(
+        fullnameRegis,
+        usernameRegis,
+        emailRegis,
+        passwordRegis,
+        profilePicRegis
+      )
+        .then((response) => {
+          alert('Registrasi Success');
+          console.log(response);
+          setRegisModal(false);
+          setLoginModal(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const logoutHandler = () => {

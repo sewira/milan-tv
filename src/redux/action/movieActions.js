@@ -7,20 +7,20 @@ import {
 } from './types';
 import { FETCH_ALL_MOVIES } from '../../constant';
 
-export const getMovies = () => async (dispatch) => {
+export const getMovies = (page) => async (dispatch) => {
   try {
     dispatch(setLoading());
-    const res = await axios.get(FETCH_ALL_MOVIES);
-    console.log(res.data.data);
+    const res = await axios.get(FETCH_ALL_MOVIES(page));
     dispatch({
       type: GET_ALL_MOVIES,
       payload: res.data.data,
     });
   } catch (error) {
-    dispatch({
-      type: GET_MOVIES_ERROR,
-      payload: error.response.data,
-    });
+    // dispatch({
+    //   type: GET_MOVIES_ERROR,
+    //   payload: error.response.data,
+    // });
+    console.log(error.response.data);
   }
 };
 

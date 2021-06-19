@@ -15,7 +15,7 @@ import Movies from '../movies/Movies';
 import CustomPagination from '../customPagination/CustomPagination';
 
 const Main = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [isShow, setIsShow] = useState({
     all: true,
     hollywood: false,
@@ -25,7 +25,7 @@ const Main = () => {
     horror: false,
   });
 
-  console.log(isShow);
+  console.log(page);
 
   const showAllMovies = () => {
     setIsShow(onlyAll);
@@ -46,16 +46,12 @@ const Main = () => {
     setIsShow(onlyHorror);
   };
 
-  const { movies, loading, movieGenre } = useSelector((state) => state.movies);
+  const { movies, movieGenre } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
-  // const sortByGenre = (e) => {
-  //   dispatch(getMoviesByGenre(e.target.value));
-  // };
-
   useEffect(() => {
-    dispatch(getMovies());
-  }, []);
+    dispatch(getMovies(page));
+  }, [page]);
 
   const showAll = isShow.all
     ? movies.map((movie) => (

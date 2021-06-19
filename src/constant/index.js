@@ -16,10 +16,12 @@
 //   return `https://api.themoviedb.org/3/search/movie?api_key=5c994437deded241a082aac5d31f0302&language=en-US&query=${title}&page=1&include_adult=false`;
 // };
 
-export const FETCH_ALL_MOVIES = `https://movie-app-teamc.herokuapp.com/api/moviesWithGenre`;
+export const FETCH_ALL_MOVIES = (page) => {
+  return `https://movie-app-teamc.herokuapp.com/api/moviesWithGenre/?page=${page}&size=10`;
+};
 
 export const FETCH_MOVIES_BY_ID = (id) => {
-  return `https://movie-app-teamc.herokuapp.com/api/movie/${id}`;
+  return `https://movie-app-teamc.herokuapp.com/api/movieId/${id}`;
 };
 
 export const FETCH_MOVIES_BY_SEARCH = (title) => {
