@@ -1,16 +1,20 @@
 import React from 'react';
 import './banner.css';
-import ReactStars from 'react-rating-stars-component';
-const Banner = ({ title, rating, description, poster, trailer }) => {
+import { data } from '../../constant/data';
+import { FaStar } from 'react-icons/fa';
+
+const Banner = ({ title, rating, description, poster, trailer, id }) => {
   return (
     <div className="banner">
       <div className="banner-wrapper">
-        <img className="banner-img" src={poster} alt="title" />
+        <img className="banner-img" src={poster} alt={title} />
       </div>
       <div className="banner-content">
         <h1>{title}</h1>
         <h2>
-          <ReactStars count={10} value={rating} size={30} />
+          {[...Array(rating)].map((e, i) => (
+            <FaStar key={i} style={{ color: 'yellow' }} />
+          ))}
         </h2>
         <p>{description}</p>
         <div className="btn-banner">

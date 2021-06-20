@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import Modal from 'react-modal';
@@ -88,11 +88,13 @@ const Header = () => {
     <div className="navbar">
       <div className="navbar-item logo">
         <Link to={'/'}>
-          <p>Logo</p>
-        </Link>
-        <Link to={'/'}>
-          {' '}
-          <p>MilanTV</p>
+          <img
+            className="logo"
+            src={
+              'https://firebasestorage.googleapis.com/v0/b/upload-image-d4daa.appspot.com/o/images%2F2573502d4ad344f89f874fe5b0e8b146.png?alt=media&token=e42c0355-96b5-49c1-9ebb-2e333548cdfe'
+            }
+            alt="logo"
+          />
         </Link>
       </div>
       <div className="navbar-item">
@@ -271,8 +273,6 @@ const Header = () => {
                   <Dropdown.Item href="#/action-1" disabled>
                     {fullname}
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Help</Dropdown.Item>
                   <Dropdown.Item href="#/action-3" onClick={logoutHandler}>
                     Logout
                   </Dropdown.Item>

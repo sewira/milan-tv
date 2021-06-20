@@ -4,7 +4,6 @@ import {
   SET_LOADING,
   GET_MOVIES_ERROR,
   SET_GENRE,
-  SET_MOVES_SEARCH,
 } from './types';
 import { FETCH_ALL_MOVIES, FETCH_MOVIES_BY_SEARCH } from '../../constant';
 

@@ -79,6 +79,7 @@ const DetailPage = () => {
     <div>
       <Header />
       <Banner
+        id={id}
         title={title}
         rating={rating}
         description={description}

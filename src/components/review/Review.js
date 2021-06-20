@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './review.css';
 import ReactStars from 'react-rating-stars-component';
+import { FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { useSelector } from 'react-redux';
@@ -15,8 +16,6 @@ function Review({ reviews, id }) {
 
   if (token === '') setIsUser(true);
 
-  console.log(token);
-
   const ratingChanged = (newRating) => {
     setStar(newRating);
   };
@@ -25,40 +24,38 @@ function Review({ reviews, id }) {
   const submitReview = (e) => {
     e.preventDefault();
     // prettier-ignore
-
-    const config = {
-      headers: { Authorization: token}
-  };
-
-    console.log(config.headers + 'headers');
-
-    const data = {
-      user_id: user_id.id,
-      movie_id: id,
-      headline: headLine,
-      review: deskripsi,
-      rating: star,
-    };
-
-    console.log(data);
-
-    axios
-      .post(
-        'https://movie-app-teamc.herokuapp.com/api/create/review',
-        data,
-        config
-      )
-      .then((response) => console.log(response))
-      .catch((err) => err.response.message);
-  };
-
-  useEffect(() => {
-    if (token) {
-      setIsUser(true);
-    } else {
-      setIsUser(false);
+    if (star === null && headLine === '' && deskripsi === ''){
+      alert('Tolong, Masukan Review')
     }
-  }, [token]);
+    {
+      const config = {
+        headers: { Authorization: token },
+      };
+
+      console.log(config.headers + 'headers');
+
+      const data = {
+        user_id: user_id.id,
+        movie_id: id,
+        headline: headLine,
+        review: deskripsi,
+        rating: star,
+      };
+
+      axios
+        .post(
+          'https://movie-app-teamc.herokuapp.com/api/create/review',
+          data,
+          config
+        )
+        .then((response) => console.log(response))
+        .catch((err) => err.response.message);
+
+      setStar();
+      setHeadLine('');
+      setDeskripsi('');
+    }
+  };
 
   return (
     <div className="review-container">
@@ -95,9 +92,12 @@ function Review({ reviews, id }) {
       <div className="main-review">
         <div className="user-container">
           {reviews.length > 0
-            ? reviews.map((review) => (
-                <div className="review-container">
+            ? reviews.map((review, index) => (
+                <div key={index} className="review-container">
                   <p className="nama-user">{review.headline}</p>
+                  <p className="nama-user">
+                    {review.rating}/10 <FaStar style={{ color: 'yellow' }} />
+                  </p>
                   <p className="user-review">{review.review}</p>
                 </div>
               ))
