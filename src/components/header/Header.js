@@ -88,7 +88,7 @@ const Header = () => {
     <div className="navbar">
       <div className="navbar-item logo">
         <Link to={'/'}>
-          <p>Logo</p>
+          <p></p>
         </Link>
         <Link to={'/'}>
           {' '}

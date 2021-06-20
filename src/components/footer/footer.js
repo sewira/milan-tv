@@ -15,7 +15,7 @@ const footer = () => {
       <div className="main-content">
         <div className="left box">
           <div className="title">
-            <h2>Logo</h2>
+            <h2></h2>
             <h2>MilanTV</h2>
           </div>
           <div className="content">
