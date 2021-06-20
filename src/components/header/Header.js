@@ -271,7 +271,8 @@ const Header = () => {
 
                 <Dropdown.Menu className="dropdown-menu">
                   <Dropdown.Item href="#/action-1" disabled>
-                    {fullname}
+                    Hi, {fullname}
+                    <hr />
                   </Dropdown.Item>
                   <Dropdown.Item href="#/action-3" onClick={logoutHandler}>
                     Logout

@@ -100,8 +100,13 @@ span {
   font-weight: bolder;
 }
 
-.btn {
+.btn-success {
   cursor: pointer;
+}
+
+.btn-success:hover{
+  cursor: pointer;
+  background-color: white;
 }
 
 .dropdown-menu {
@@ -109,11 +114,12 @@ span {
   flex-direction: column;
   position: absolute;
   z-index: 10;
-  background: #eb507f;
+  background: #f36d95;
   align-items: center;
   padding: 20px 30px;
   color: white;
   position: absolute;
+  border-radius: 10px;
 
   width: 100px;
 }

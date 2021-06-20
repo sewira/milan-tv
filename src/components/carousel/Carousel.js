@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import satu from '../../assets/landscape1.jpg';
-import dua from '../../assets/landscape2.jpg';
+import dua from '../../assets/landscape2.jpeg';
 import tiga from '../../assets/landscape3.jpg';
 
 const Carousel = () => {
